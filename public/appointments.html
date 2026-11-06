@@ -1,0 +1,276 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Appointments</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <a class="brand" href="/">HealthConnect</a>
+
+        <div class="navlinks">
+            <a href="/doctors.html">Doctors</a>
+            <a href="/index.html">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <!-- Page Heading -->
+        <section class="section-heading left">
+            <p class="eyebrow">PATIENT PORTAL</p>
+            <h1>Appointments</h1>
+            <p>Book a new appointment or manage your existing bookings.</p>
+        </section>
+
+        <!-- BOOK APPOINTMENT -->
+        <section class="panel">
+
+            <h2>Book an Appointment</h2>
+
+            <form id="appointment-form" class="form grid-form">
+
+                <!-- Category -->
+                <label for="specialization">
+                    Category
+
+                    <select id="specialization" required>
+                        <option value="">Select category</option>
+                        <option value="Cardiology">Cardiology</option>
+                        <option value="Dermatology">Dermatology</option>
+                        <option value="General Medicine">General Medicine</option>
+                        <option value="Neurology">Neurology</option>
+                        <option value="Orthopedics">Orthopedics</option>
+                        <option value="Pediatrics">Pediatrics</option>
+                        <option value="Dentistry">Dentistry</option>
+                        <option value="Gynecology">Gynecology</option>
+                    </select>
+                </label>
+
+                <!-- Search Doctors -->
+                <button
+                    id="search-doctors"
+                    class="button button-secondary"
+                    type="button">
+                    Search Doctors
+                </button>
+
+                <!-- Select Doctor -->
+                <label for="doctor">
+                    Select Doctor
+
+                    <select id="doctor" required>
+                        <option value="">Select a doctor</option>
+                    </select>
+                </label>
+
+                <!-- Appointment Date -->
+                <label for="appointment-date">
+                    Appointment Date
+
+                    <input
+                        id="appointment-date"
+                        type="date"
+                        required>
+                </label>
+
+                <!-- Appointment Time -->
+                <label for="appointment-time">
+                    Appointment Time
+
+                    <input
+                        id="appointment-time"
+                        type="time"
+                        required>
+                </label>
+
+                <!-- Book Button -->
+                <button
+                    id="book-button"
+                    class="button"
+                    type="submit">
+                    Book Appointment
+                </button>
+
+                <!-- Reset Button -->
+                <button
+                    id="reset-button"
+                    class="button button-secondary"
+                    type="reset">
+                    Reset
+                </button>
+
+                <p id="message" class="message" role="status"></p>
+
+            </form>
+
+        </section>
+
+        <!-- MY APPOINTMENTS -->
+        <section class="panel">
+
+            <div class="section-heading left">
+
+                <div>
+                    <h2>My Appointments</h2>
+
+                    <p>
+                        Patient Name:
+                        <strong id="logged-patient-name">
+                            Loading...
+                        </strong>
+                    </p>
+                </div>
+
+                <button
+                    id="refresh-appointments"
+                    class="button button-secondary"
+                    type="button">
+                    Refresh
+                </button>
+
+            </div>
+
+            <!-- Appointment List -->
+            <div id="appointment-list" class="table-wrap"></div>
+
+        </section>
+
+    </main>
+
+    <!-- Main JavaScript -->
+    <script src="/js/app.js"></script>
+
+    <script>
+
+        // Load logged-in patient's name
+        async function loadPatientName() {
+
+            const patientName =
+                document.getElementById("logged-patient-name");
+
+            try {
+
+                const response = await fetch("/api/me", {
+                    credentials: "same-origin"
+                });
+
+                if (!response.ok) {
+                    window.location.href = "/login.html";
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (data.user && data.user.name) {
+
+                    patientName.textContent = data.user.name;
+
+                } else {
+
+                    window.location.href = "/login.html";
+
+                }
+
+            } catch (error) {
+
+                patientName.textContent =
+                    "Unable to load patient name";
+
+            }
+        }
+
+        // Execute patient name loading
+        loadPatientName();
+
+
+        // Search doctors based on category
+        document.getElementById("search-doctors")
+            .addEventListener("click", async function () {
+
+                const category =
+                    document.getElementById("specialization").value;
+
+                const doctorSelect =
+                    document.getElementById("doctor");
+
+                const message =
+                    document.getElementById("message");
+
+                if (!category) {
+
+                    message.textContent =
+                        "Please select a category.";
+
+                    return;
+                }
+
+                try {
+
+                    const response = await fetch(
+                        "/api/doctors?specialization=" +
+                        encodeURIComponent(category),
+                        {
+                            credentials: "same-origin"
+                        }
+                    );
+
+                    if (!response.ok) {
+                        throw new Error("Unable to search doctors.");
+                    }
+
+                    const data = await response.json();
+
+                    doctorSelect.innerHTML =
+                        '<option value="">Select a doctor</option>';
+
+                    data.doctors.forEach(doctor => {
+
+                        const option =
+                            document.createElement("option");
+
+                        option.value = doctor.id;
+
+                        option.textContent =
+                            doctor.name + " - " +
+                            doctor.specialization;
+
+                        doctorSelect.appendChild(option);
+
+                    });
+
+                    message.textContent = data.doctors.length
+                        ? "Doctors found successfully."
+                        : "No doctors available in this category.";
+
+                } catch (error) {
+
+                    message.textContent = error.message;
+
+                }
+
+            });
+
+
+        // Reset form
+        document.getElementById("appointment-form")
+            .addEventListener("reset", function () {
+
+                document.getElementById("doctor").innerHTML =
+                    '<option value="">Select a doctor</option>';
+
+                document.getElementById("message").textContent = "";
+
+            });
+
+    </script>
+
+</body>
+</html>

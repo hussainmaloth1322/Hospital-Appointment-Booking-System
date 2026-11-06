@@ -1,0 +1,347 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CityCare Hospital appointment booking demo">
+    <title>CityCare Hospital | Your Health Our Priority</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <a class="brand" href="/" aria-label="CityCare Hospital home">
+            <span class="brand-mark" aria-hidden="true">✚</span>
+            <span>
+                <strong>CityCare Hospital</strong>
+                <small>Your Health Our Priority</small>
+            </span>
+        </a>
+
+        <button
+            class="menu-toggle"
+            id="menu-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false">
+            ☰
+        </button>
+
+        <nav class="navlinks" id="main-nav">
+
+            <a class="active" href="/">
+                ⌂ <span>Home</span>
+            </a>
+            <a href="/appointments.html">
+                ▦ <span>Book Appointment</span>
+            </a>
+
+            <a href="/doctors.html">
+                ♧ <span>Doctors</span>
+            </a>
+            <!-- Dynamic Login / Admin / Patient Name -->
+            <span id="account-nav">
+                <a href="/login.html">♟ <span>Login</span></a>
+                <a href="/register.html">▣ <span>Register</span></a>
+            </span>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- HERO SECTION -->
+        <section class="hero-banner">
+
+            <div class="hero-copy">
+
+                <p class="hero-kicker">WELCOME TO</p>
+
+                <h1>
+                    <span>CityCare</span> Hospital
+                </h1>
+
+                <p class="hero-description">
+                    Book your appointment easily and get the best
+                    <br class="desktop-break">
+                    medical care from our expert doctors.
+                </p>
+
+                <a class="button hero-button" href="/appointments.html">
+                    Book Appointment <span>→</span>
+                </a>
+
+            </div>
+
+            <div class="hero-art" aria-hidden="true">
+
+                <div class="pulse-line">〰</div>
+                <div class="heart-symbol">♡</div>
+
+                <div class="doctor-illustration">
+                    <div class="doctor-hair"></div>
+                    <div class="doctor-head"></div>
+                    <div class="doctor-neck"></div>
+                    <div class="doctor-coat"></div>
+                    <div class="doctor-shirt"></div>
+                    <div class="doctor-stethoscope">⌁</div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- FEATURES -->
+        <section class="feature-strip" aria-label="Hospital services">
+
+            <div class="feature">
+                <span class="feature-icon">♟</span>
+                <span>
+                    <strong>Expert Doctors</strong>
+                    <small>Top Specialists</small>
+                </span>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">◷</span>
+                <span>
+                    <strong>Easy Booking</strong>
+                    <small>In Just a Few Clicks</small>
+                </span>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">⬟</span>
+                <span>
+                    <strong>Trusted Care</strong>
+                    <small>Your Health, Our Priority</small>
+                </span>
+            </div>
+
+            <div class="feature">
+                <span class="feature-icon">☏</span>
+                <span>
+                    <strong>24/7 Support</strong>
+                    <small>Always Here for You</small>
+                </span>
+            </div>
+
+        </section>
+
+        <!-- SPECIALISTS -->
+        <section class="specialist-layout">
+
+            <div class="specialists-area">
+
+                <div class="section-title-row">
+                    <h2>Our Specialists</h2>
+                    <a href="/doctors.html">
+                        View All Doctors <span>→</span>
+                    </a>
+                </div>
+
+                <div class="home-doctor-grid">
+
+                    <article class="home-doctor-card">
+                        <img src="/images/doctor-ravi.svg"
+                            alt="Illustration of Dr. Ravi Kumar">
+                        <h3>Dr. Ravi Kumar</h3>
+                        <p>Cardiologist</p>
+                        <a class="button small-button" href="/doctors.html">
+                            View Profile
+                        </a>
+                    </article>
+
+                    <article class="home-doctor-card">
+                        <img src="/images/doctor-priya.svg"
+                            alt="Illustration of Dr. Priya Sharma">
+                        <h3>Dr. Priya Sharma</h3>
+                        <p>Dermatologist</p>
+                        <a class="button small-button" href="/doctors.html">
+                            View Profile
+                        </a>
+                    </article>
+
+                    <article class="home-doctor-card">
+                        <img src="/images/doctor-suresh.svg"
+                            alt="Illustration of Dr. Suresh Reddy">
+                        <h3>Dr. Suresh Reddy</h3>
+                        <p>Orthopedic Surgeon</p>
+                        <a class="button small-button" href="/doctors.html">
+                            View Profile
+                        </a>
+                    </article>
+
+                    <article class="home-doctor-card">
+                        <img src="/images/doctor-anitha.svg"
+                            alt="Illustration of Dr. Anitha Rao">
+                        <h3>Dr. Anitha Rao</h3>
+                        <p>Gynecologist</p>
+                        <a class="button small-button" href="/doctors.html">
+                            View Profile
+                        </a>
+                    </article>
+
+                </div>
+
+            </div>
+
+            <!-- FIND DOCTOR -->
+            <aside class="find-doctor-panel">
+
+                <h2><span>▦</span> Find a Doctor</h2>
+
+                <form id="home-doctor-search" class="find-doctor-form">
+
+                    <label class="sr-only" for="home-specialization">
+                        Select specialization
+                    </label>
+
+                    <select id="home-specialization">
+                        <option value="">Select Specialization</option>
+                        <option>Cardiology</option>
+                        <option>Dermatology</option>
+                        <option>Orthopedics</option>
+                        <option>Gynecology</option>
+                        <option>General Medicine</option>
+                        <option>Pediatrics</option>
+                    </select>
+
+                    <label class="sr-only" for="home-date">
+                        Select appointment date
+                    </label>
+
+                    <input
+                        id="home-date"
+                        type="date"
+                        aria-label="Select Date">
+
+                    <button class="button search-button" type="submit">
+                        ⌕ &nbsp; Search Doctors
+                    </button>
+
+                    <p id="home-search-message"
+                        class="message"
+                        role="status">
+                    </p>
+
+                </form>
+
+            </aside>
+
+        </section>
+
+        <div class="notice demo-notice">
+            <strong>Student project demo:</strong>
+            Use sample information only. Do not enter real patient or medical details.
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <a class="footer-brand" href="/">
+            <span class="footer-mark">✚</span>
+            <span>
+                <strong>CityCare Hospital</strong>
+                <small>Your Health Our Priority</small>
+            </span>
+        </a>
+
+        <div class="footer-links">
+            <a href="/">About Us</a>
+            <a href="mailto:citycare@example.test">Contact Us</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms &amp; Conditions</a>
+        </div>
+
+        <div class="social-links" aria-label="Social links">
+            <span>f</span>
+            <span>♥</span>
+            <span>▶</span>
+            <span>in</span>
+        </div>
+
+    </footer>
+
+    <!-- EXISTING JAVASCRIPT -->
+    <script src="/js/app.js"></script>
+
+    <!-- DYNAMIC LOGGED-IN USER NAME -->
+    <script>
+
+        async function loadAccountName() {
+
+            const accountNav =
+                document.getElementById("account-nav");
+
+            try {
+
+                const response = await fetch("/api/me", {
+                    credentials: "same-origin"
+                });
+
+                // User is not logged in
+                if (!response.ok) {
+                    return;
+                }
+
+                const data = await response.json();
+
+                if (!data.user) {
+                    return;
+                }
+
+                const user = data.user;
+
+                // Clear Login and Register links
+                accountNav.replaceChildren();
+
+                // Create account name link
+                const accountLink =
+                    document.createElement("a");
+
+                accountLink.textContent =
+                    (String(user.role).toLowerCase() === "admin"
+                        ? "Admin: "
+                        : "Welcome: ") + user.name;
+
+                // Admin dashboard link
+                if (String(user.role).toLowerCase() === "admin") {
+
+                    accountLink.href = "/admin.html";
+
+                    accountLink.className = "admin-link";
+
+                } else {
+
+                    accountLink.href = "/index.html";
+
+                }
+
+                accountNav.appendChild(accountLink);
+
+            } catch (error) {
+
+                console.error(
+                    "Unable to load account details:",
+                    error
+                );
+
+            }
+
+        }
+
+        // Load account information when page opens
+        loadAccountName();
+
+    </script>
+
+</body>
+</html>
